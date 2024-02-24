@@ -6,12 +6,12 @@
   <body>
     <h1>Input Output Demo</h1>
 
-    <form>
-      <label for="CanvasID">Name:</label>
-      <input type="text" id="Canvas ID" name="Canvas ID" required />
+    <form id="inputForm">
+      <label for="canvasID">Canvas ID:</label>
+      <input type="text" id="canvasID" name="canvasID" required />
 
-      <label for="FullName">Email:</label>
-      <input type="name" id="FullName" name="FullName" required />
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required />
 
       <button type="submit">Submit</button>
     </form>
@@ -19,16 +19,31 @@
     <div id="output"></div>
 
     <script>
-      const form = document.querySelector("form");
+      const form = document.querySelector("#inputForm");
       const output = document.querySelector("#output");
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const name = document.querySelector("#name").value;
-        const email = document.querySelector("#email").value;
+        const canvasID = document.querySelector("#canvasID").value;
+        const fullName = document.querySelector("#fullName").value;
 
-        output.textContent = `Hello, ${name}! Your email is ${email}.`;
+        // Make a POST request to the backend
+        fetch("/process_input", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ canvasID, fullName }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Display the response from the backend
+            output.textContent = data.message;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       });
     </script>
   </body>
