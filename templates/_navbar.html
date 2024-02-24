@@ -1,0 +1,64 @@
+<div class="navbar">
+  <!-- Logo, always without the 'active' class -->
+  <a href="{{ url_for('home') }}">
+    <img
+      src="{{ url_for('static', filename='images/logo.png') }}"
+      alt="logo"
+      id="navbar-logo"
+    />
+  </a>
+
+  <!-- Divider -->
+  <span class="divider"></span>
+
+  <!-- Home -->
+  <a
+    href="{{ url_for('home') }}"
+    class="{{ 'active' if request.endpoint == 'home' else '' }}"
+  >
+    <img src="{{ url_for('static', filename='images/home.png') }}" alt="home" />
+    Home
+  </a>
+
+  <!-- Divider -->
+  <span class="divider"></span>
+
+  <!-- Chat -->
+  <a
+    href="{{ url_for('chat') }}"
+    class="{{ 'active' if request.endpoint == 'chat' else '' }}"
+  >
+    <img src="{{ url_for('static', filename='images/chat.png') }}" alt="chat" />
+    Chat
+  </a>
+
+  <!-- Divider -->
+  <span class="divider"></span>
+
+  <!-- Account -->
+  <a
+    href="{{ url_for('account') }}"
+    class="{{ 'active' if request.endpoint == 'account' else '' }}"
+  >
+    <img
+      src="{{ url_for('static', filename='images/account.png') }}"
+      alt="account"
+    />
+    Account
+  </a>
+
+  <!-- Divider -->
+  <span class="divider"></span>
+
+  <!-- About -->
+  <a
+    href="{{ url_for('about') }}"
+    class="{{ 'active' if request.endpoint == 'about' else '' }}"
+  >
+    <img
+      src="{{ url_for('static', filename='images/about.png') }}"
+      alt="about"
+    />
+    About
+  </a>
+</div>

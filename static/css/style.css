@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url("/static/images/backdrop.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.navbar {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-image: url("/static/images/taskbar.png");
+  background-size: cover; /* Adjusted to cover to ensure it fills the navbar */
+  background-position: center; /* Adjusted for a better fit */
+  background-repeat: no-repeat;
+  height: 80px; /* Reduced height */
+}
+
+.navbar a {
+  font-family: "Roboto", sans-serif;
+  margin-top: -10px;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px; /* Reduced padding */
+  font-size: 1em; /* Adjusted font size */
+  text-decoration: none;
+  color: #c5c5c5;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adjusted shadow for text */
+}
+
+.divider {
+  display: inline-block;
+  margin-top: -10px !important;
+  height: 50%; /* Adjusted height */
+  width: 10px; /* Reduced width */
+  background-image: url("/static/images/divider.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 0px; /* Adjusted margin */
+  vertical-align: middle;
+}
+
+.navbar-logo {
+  width: auto !important; /* Maintain aspect ratio */
+  height: 60px !important; /* Adjust this value to make the logo larger */
+}
+
+.navbar a img {
+  height: 30px; /* Adjusted height */
+  width: auto; /* Adjust width to maintain aspect ratio */
+  margin-right: 5px; /* Adjusted margin */
+  filter: drop-shadow(
+    1px 1px 2px rgba(0, 0, 0, 0.5)
+  ); /* Adjusted shadow effect */
+}
+
+.navbar a:not(:first-child).active,
+.navbar a:not(:first-child).active img {
+  color: rgba(242, 64, 64, 0.747); /* For text */
+}
