@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Badger+ Home</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-  </head>
-  <body>
-    {% include '_navbar.html' %}
-    <h1>home</h1>
-  </body>
-</html>
+{% extends "base.html" %} {% block title %}Badger+ home{% endblock %} {% block
+content %}
+<div class="container">
+  <div class="text-container">
+    <p class="smart-badger-text">Be a smart badger.</p>
+  </div>
+  <div class="get-started-button-container">
+    <a href="{{ url_for('signup') }}" class="get-started-button"
+      >Create Account</a
+    >
+  </div>
+</div>
+{% endblock %}
