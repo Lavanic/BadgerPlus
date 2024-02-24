@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Input Output Demo</title>
+  </head>
+  <body>
+    <h1>Input Output Demo</h1>
+
+    <form>
+      <label for="CanvasID">Name:</label>
+      <input type="text" id="Canvas ID" name="Canvas ID" required />
+
+      <label for="FullName">Email:</label>
+      <input type="name" id="FullName" name="FullName" required />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+      const form = document.querySelector("form");
+      const output = document.querySelector("#output");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const name = document.querySelector("#name").value;
+        const email = document.querySelector("#email").value;
+
+        output.textContent = `Hello, ${name}! Your email is ${email}.`;
+      });
+    </script>
+  </body>
+</html>
