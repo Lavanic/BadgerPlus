@@ -15,11 +15,10 @@ body {
 .navbar {
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   background: transparent;
   width: 100%;
-  position: fixed;
+  position: relative;
   top: 0;
   transition: background-color 0.3s ease;
   z-index: 1000;
@@ -126,4 +125,37 @@ body {
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -220%); /* Center the element */
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Push buttons to the right */
+}
+
+.navbar-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 40px;
+  background-color: #ea716d; /* Red background color */
+  color: white !important; /* White text color */
+  text-decoration: none;
+  font-family: "Roboto", sans-serif; /* Roboto font */
+  font-weight: bold;
+  margin-left: -200px; /* Add some spacing between buttons */
+}
+
+.navbar-button:not(:last-child) {
+  margin-right: 195px; /* Add margin to all buttons except the last one */
+}
+
+.navbar-button:hover {
+  background-color: #ea716daf; /* Darker red on hover */
+}
+
+.login-text {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold !important;
+  color: #ea716d; /* Adjust color as needed */
+  margin-right: -140px; /* Add spacing between login text and buttons */
 }
