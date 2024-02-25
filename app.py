@@ -35,7 +35,7 @@ def signin():
 def demo():
     return render_template('demo.html')
 
-openai_api_key = "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"  # Ensure you have your OpenAI API key here
+openai_api_key = "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"  # Ensure you have your OpenAI API key here
 @app.route('/get_chat_response', methods=['POST'])
 def get_chat_response():
     data = request.json
@@ -56,11 +56,11 @@ def get_chat_response():
     assignments_exams = []
     if "club" in user_input.lower():
         # Handle club-related questions
-        response = generate_response_clubs(openai_api_key, user_input + " Respond this as briefly as possible, and assume all users are UW-Madison Students, you will use knowledge about UW-Madison and Madison to respond appropriately")
+        response = generate_response_clubs(openai_api_key, user_input + " Respond to this as briefly as possible and without excess symbols, and assume all users are UW-Madison Students, you will use knowledge about UW-Madison and Madison to respond appropriately")
     else:
         # Fetch Canvas assignments and exams data using the user-specific API key
         assignments_exams = fetch_canvas_assignments_and_exams(canvas_api_key)
-        response = generate_response(openai_api_key, user_input + " Respond this as briefly as possible, and assume all users are UW-Madison Students, you will use knowledge about UW-Madison and Madison to respond appropriately", assignments_exams)
+        response = generate_response(openai_api_key, user_input + " Respond to this as briefly as possible and without excess symbols, and assume all users are UW-Madison Students, you will use knowledge about UW-Madison and Madison to respond appropriately", assignments_exams)
     
     return jsonify(response=response)
 
