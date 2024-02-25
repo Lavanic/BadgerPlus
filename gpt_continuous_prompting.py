@@ -1,5 +1,5 @@
 from gpt_service_utils import generate_response  # Corrected import for generating responses
-from canvas_data_fetcher import fetch_canvas_assignments_and_exams  # Correctly import data fetching function
+from canvas_fetcher import fetch_canvas_assignments_and_exams  # Correctly import data fetching function
 
 def continuous_interaction(openai_api_key):
     user_name = input("Hello! What is your name? ")
@@ -25,5 +25,5 @@ def continuous_interaction(openai_api_key):
         print(answer)
 
 if __name__ == "__main__":
-    openai_api_key = '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'  # Use your actual OpenAI API key
+    openai_api_key = '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'  # Use your actual OpenAI API key
     continuous_interaction(openai_api_key)
