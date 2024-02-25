@@ -33,7 +33,7 @@ def generate_response_clubs(openai_api_key, user_question, csv_file_path='UW-Clu
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo",
             messages=messages,
             temperature=0.7,
             max_tokens=2000,

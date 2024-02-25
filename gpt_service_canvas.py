@@ -16,7 +16,7 @@ def generate_response_canvas(openai_api_key, user_question, assignments_exams):
     messages.append({"role": "user", "content": user_question})
 
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo",
         messages=messages,
         temperature=0.7,
         max_tokens=2000,

@@ -46,7 +46,7 @@ def get_chat_response():
 
     if "club" in user_input.lower():
         # Handle club-related questions
-        response = generate_response_clubs(openai_api_key, user_input)
+        response = generate_response_clubs(openai_api_key, user_input + " Respond this as briefly as possible, and assume all users are UW-Madison Students, you will use knowledge about UW-Madison and Madison to respond appropriatley")
     else:
         # Handle Canvas-related questions
         # Fetch Canvas assignments and exams data if not already done
