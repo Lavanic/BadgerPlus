@@ -23,8 +23,13 @@
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             z-index: 1001; 
+            width: 80%; /* Set the width as a percentage of the viewport */
+            max-width: 600px;
             text-align: center;
-        }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
         .text {
           font-family: "Roboto", sans-serif;
         }
@@ -52,22 +57,15 @@
           align-items: center;
         }
         .large-text-box {
-          width: 400px; /* Set the width */
+          width: 70%; /* Set the width as a percentage of the container */
+          max-width: 400px; /* Set a maximum width */
           height: 80px; /* Set the height */
-          padding: 40px; /* Add padding for better appearance */
+          padding: 20px; /* Add padding for better appearance */
           font-size: 16px; /* Font size */
           border: 1px solid #090505; /* Border style */
           border-radius: 5px; /* Rounded corners */
           margin-top: 15px;
           margin-bottom: 30px;
-          margin-left: 33px;
-        }
-        .boxFor {
-          background-color: #f0f0f0; /* Background color of the box */
-          border: 1px solid #050404; /* Border around the box */
-          padding: 20px; /* Padding inside the box */
-          border-radius: 5px; /* Rounded corners */
-          width: 300px; /* Set width */
         }
         .logo-image {
           max-width: 150px; /* Adjust the maximum width as needed */
@@ -107,20 +105,21 @@
                 name="password"
                 required
                 /><br /><br />
-                <label for="interests">Give a three sentence bio that includes:
-                <li>Interests</li>
-                <li>Favorite foods</li>
-                <li>Hobbies</li>
-                </label>
-                <textarea
-                type="interests"
-                class="large-text-box"
-                required
-                > </textarea>
-                <button type="submit" class="custom-btn">Sign Up</button>
+                <div class="boxFor">
+                  <label for="interests">Give a three sentence bio that includes:
+                  <li>Interests</li>
+                  <li>Favorite foods</li>
+                  <li>Hobbies</li>
+                  </label>
+                  <textarea
+                  type="interests"
+                  class="large-text-box"
+                  required
+                  > </textarea>
+                  <button type="submit" class="custom-btn">Sign Up</button>
+                </div>
               </div>
             </form> 
         </div>
       </body>
-
 </html>
