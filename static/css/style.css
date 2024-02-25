@@ -93,7 +93,7 @@ body {
 
 .get-started-button-container {
   position: absolute;
-  top: 50%; /* Center vertically */
+  top: 40%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -20%); /* Adjusts for the element's dimensions */
 }
@@ -122,7 +122,7 @@ body {
   text-align: center; /* Center the text */
   margin-bottom: 20px; /* Space between the text and the button */
   position: absolute; /* Position the element */
-  top: 50%; /* Center vertically */
+  top: 40%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -220%); /* Center the element */
 }
@@ -170,11 +170,11 @@ body {
 
 .chat-container {
   width: 600px;
-  background-color: #5e5e5ebd;
+  background-color: #5e5e5e7f;
   border-radius: 10px;
   overflow: hidden;
   position: absolute;
-  margin-top: -350px;
+  margin-top: -400px;
   margin-left: 50px !important;
 }
 
@@ -259,18 +259,18 @@ body {
 
 .header {
   display: flex;
-  height: 150px; /* Adjust the height as needed */
+  height: 170px; /* Adjust the height as needed */
   justify-content: space-between;
   align-items: center;
   padding: 0 60px; /*Adjust to right */
-  color: #ea716d;
+  color: #353535db;
   font-family: "Roboto", sans-serif; /* Adjust if you have a specific 'robot' font in mind */
   text-decoration: underline; /* Add underline to the text */
 }
 
 .chat-title,
 .info-title {
-  font-size: 40px; /* Adjust size as needed */
+  font-size: 30px; /* Adjust size as needed */
   padding: 0px 0px; /* Adds some padding above and below the text */
 }
 
@@ -281,7 +281,48 @@ body {
   border-radius: 10px; /* Match the chat container border radius */
   position: absolute; /* Use absolute positioning for precise control */
   right: 50px; /* Distance from the right edge of the viewport */
-  top: -30px; /* Adjust the top position to match the chat container or as needed */
+  top: -50px; /* Adjust the top position to match the chat container or as needed */
   padding: 10px; /* Padding inside the container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for depth */
+  overflow-y: auto; /* Enables vertical scrolling */
+  /* border: 3px solid #007bff; Light blue border */
+}
+
+.info-container h2,
+.info-container h3,
+.info-container ul {
+  font-family: "Roboto", sans-serif;
+  color: #000; /* Black text */
+}
+
+.info-container h2 {
+  font-size: 24px; /* Adjust based on preference */
+  margin-bottom: 20px; /* Space below the title */
+}
+
+.info-container h3 {
+  font-size: 20px; /* Adjust based on preference */
+  margin-top: 20px; /* Space above each section title */
+  margin-bottom: 10px; /* Space below the section title */
+}
+
+.info-container ul {
+  list-style-type: none; /* Removes default list styling */
+  padding: 0; /* Removes default padding */
+  margin-left: 20px; /* Indent items a bit */
+}
+
+.info-container li {
+  margin-bottom: 10px; /* Space between items */
+}
+
+/* Optional: Add a subtle border or shadow to each section for better visual separation */
+.info-section {
+  border-bottom: 1px solid #ddd; /* Light grey border at the bottom of each section */
+  padding-bottom: 20px; /* Space at the bottom inside each section */
+}
+
+/* Removes the border from the last section for cleaner look */
+.info-section:last-child {
+  border-bottom: none;
 }

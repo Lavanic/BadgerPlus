@@ -10,4 +10,61 @@ content %}
     >
   </div>
 </div>
+
+<script>
+  const phrases = [
+    "Be a smart badger.",
+    "Organize your classes.",
+    "Organize your homework.",
+    "Find clubs for you.",
+    "Find food for you.",
+    "Optimize your life.",
+    "Or don't...",
+  ];
+
+  let currentPhraseIndex = 0;
+  let currentCharacterIndex = 0;
+  let direction = 1; // 1 for typing, -1 for deleting
+  const typingSpeedMs = 60; // Speed of typing in milliseconds
+  const deleteSpeedMs = 60; // Speed of deleting in milliseconds
+  const pauseTimeMs = 2000; // Pause time at the end of each phrase
+  let isPaused = false;
+
+  const textElement = document.querySelector(".smart-badger-text");
+
+  function typeNextCharacter() {
+    if (!isPaused) {
+      const phrase = phrases[currentPhraseIndex];
+      if (direction === 1) {
+        // Typing
+        currentCharacterIndex++;
+        if (currentCharacterIndex > phrase.length) {
+          direction = -1; // Switch to deleting
+          isPaused = true; // Pause at the end of typing
+          setTimeout(() => {
+            isPaused = false;
+          }, pauseTimeMs); // Pause before deleting
+        }
+      } else {
+        // Deleting
+        currentCharacterIndex--;
+        if (currentCharacterIndex < 0) {
+          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length; // Move to next phrase
+          direction = 1; // Switch to typing
+          isPaused = true; // Pause at the end of deleting
+          setTimeout(() => {
+            isPaused = false;
+          }, pauseTimeMs / 8); // Pause before typing next phrase
+        }
+      }
+      textElement.textContent = phrase.substring(0, currentCharacterIndex);
+    }
+
+    const speed = direction === 1 ? typingSpeedMs : deleteSpeedMs;
+    setTimeout(typeNextCharacter, speed);
+  }
+
+  setTimeout(typeNextCharacter, pauseTimeMs); // Initial delay before starting
+</script>
+
 {% endblock %}
