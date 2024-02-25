@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 <html>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("signin-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Assuming successful login, set username in session storage
+            if ((username === "wFoster" && password === "owsa") ||
+                (username === "sMathur" && password === "owsa") ||
+                (username === "aLang" && password === "owsa") ||
+                (username === "oOhrt" && password === "owsa")) {
+                sessionStorage.setItem('username', username); // Store username
+                window.location.href = "/hub";
+            } else {
+                alert("Incorrect username or password. Please try again.");
+            }
+        });
+    });
+</script> 
   <head>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -60,14 +80,14 @@
   </head>
   <body>
     <!-- Logo positioned above the box -->
-    <div class="navbar-logo">
+    <a href="{{ url_for('home') }}" class="navbar-logo">
       <img class="logo-image" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" />
-    </div>
+    </a>
     
     <!-- Box content -->
     <div class="overlay-content"> <!-- Wrapped content within div -->
       <h1>Sign In</h1>
-      <form>
+      <form id="signin-form">
         <div class="text">
           <label for="username"><strong>Username:</strong></label>
           <input type="text" id="username" name="username" required /><br /><br />
@@ -78,8 +98,7 @@
             name="password"
             required
           /><br /><br />
-
-          <button class="custom-btn">Sign Up</button>
+          <button class="custom-btn">Log In</button>
         </div>
       </form>
     </div>
