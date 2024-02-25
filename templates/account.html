@@ -1,42 +1,42 @@
-{% extends "base.html" %} {% block title %}Badger+ Account{% endblock title %} {%
-  block content %}
-  <html>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const variableValue = urlParams.get(username);
-      variableValue = sessionStorage.getItem(username);
-    </script>
-  <style>
-    .user-info {
-      position: center;
-      font-family: "Roboto", sans-serif;
-
-    }
-    .overlay-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, #f3f3f3, #dddddd); /* Gradient background */
-        padding: 20px;
-        border-radius: 15px; /* Rounded corners */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
-        z-index: 1001; 
-        text-align: center; /* Center align text */
-      }
-  </style>
-  <div class="container">
-    <div class="overlay-content">
-        <div class="user-info">
-          <h1>Account Information</h1>
-            <p><strong>Username:</strong> AidenLang</p>
-            <p><strong>Email:</strong> ajlang5@wisc.edu</p>
-            <p><strong>Full Name:</strong> Aiden Lang</p>
-            <p></p>
-            <!-- Add more details as needed -->
+{% extends "base.html" %} 
+{% block title %}Badger+ Account{% endblock title %} 
+{% block content %}
+<html>
+<head>
+    <style>
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .overlay-content {
+            background: linear-gradient(135deg, #f3f3f3, #dddddd); /* Gradient background */
+            padding: 40px; /* Increased padding */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+            text-align: center; /* Center align text */
+        }
+        
+        .user-info {
+            font-family: "Roboto", sans-serif;
+            font-size: 24px; /* Increased font size */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="overlay-content">
+            <div class="user-info">
+                <h1>Account Information</h1>
+                <p><strong>Username:</strong> AidenLang</p>
+                <p><strong>Email:</strong> ajlang5@wisc.edu</p>
+                <p><strong>Full Name:</strong> Aiden Lang</p>
+                <!-- Add more details as needed -->
+            </div>
         </div>
     </div>
-  </div>
-  </html>
-  {% endblock content %}
-  
+</body>
+</html>
+{% endblock content %}
