@@ -1,41 +1,25 @@
 <!DOCTYPE html>
 <html>
   <script>
-      document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById("signin-form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent form submission
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-  
-        // Fetch the desired username from a text file
-        fetch('desired_username.txt')
-          .then(response => response.text())
-          .then(data => {
-            if ((username === "WillFoster") && password === "owsa") {
-              sessionStorage.setItem(username, 'WillFoster');
-              window.location.href = "/hub";
-            } 
-            else if ((username === "SanjayMathur") && password === "owsa") {
-              window.location.href = "/hub";
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("signin-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Assuming successful login, set username in session storage
+            if ((username === "wFoster" && password === "owsa") ||
+                (username === "sMathur" && password === "owsa") ||
+                (username === "aLang" && password === "owsa") ||
+                (username === "oOhrt" && password === "owsa")) {
+                sessionStorage.setItem('username', username); // Store username
+                window.location.href = "/hub";
+            } else {
+                alert("Incorrect username or password. Please try again.");
             }
-            else if ((username === "AidenLang") && (passwword === "owsa")) {
-              window.location.href = "/hub";
-            }
-            else if ((username === "OliverOhrt") && (password === "owsa")) {
-              window.location.href = "/hub";
-            }
-          
-            else {
-              alert("Incorrect username or password. Please try again.");
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert("Error fetching desired username. Please try again later.");
-          });
-      });
+        });
     });
-  </script>   
+</script> 
   <head>
     <link rel="stylesheet" href="styles.css">
     <style>

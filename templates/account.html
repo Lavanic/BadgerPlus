@@ -30,13 +30,69 @@
         <div class="overlay-content">
             <div class="user-info">
                 <h1>Account Information</h1>
-                <p><strong>Username:</strong> AidenLang</p>
-                <p><strong>Email:</strong> ajlang5@wisc.edu</p>
-                <p><strong>Full Name:</strong> Aiden Lang</p>
+                <p><strong>Username:</strong> <span id="username"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>Full Name:</strong> <span id="fullname"></span></p>
                 <!-- Add more details as needed -->
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Retrieve username from session storage and display it
+            var username = sessionStorage.getItem('username');
+            document.getElementById('username').textContent = username;
+
+            // Map usernames to corresponding email addresses and full names
+            var userInfo = getUserInfo(username);
+            if(userInfo) {
+                document.getElementById('email').textContent = userInfo.email;
+                document.getElementById('fullname').textContent = userInfo.fullname;
+            } else {
+                document.getElementById('email').textContent = 'N/A';
+                document.getElementById('fullname').textContent = 'N/A';
+            }
+        });
+
+        // Function to map usernames to corresponding email addresses and full names
+        function getUserInfo(username) {
+          if (username == 'wFoster' ){
+            var users = {
+                'wFoster': {
+                    email: 'wjfoster@wisc.edu',
+                    fullname: 'Will Foster'
+                },
+                // Add more mappings for other usernames if needed
+            };
+          }
+          if (username == 'sMathur' ){
+            var users = {
+                'sMathur': {
+                    email: 'mathur22@wisc.edu',
+                    fullname: 'Sanjay Mathur'
+                },
+                // Add more mappings for other usernames if needed
+            };
+          }if (username == 'aLang' ){
+            var users = {
+                'aLang': {
+                    email: 'ajlang5@wisc.edu',
+                    fullname: 'Aiden Lang'
+                },
+                // Add more mappings for other usernames if needed
+            };
+          }if (username == 'oOhrt' ){
+            var users = {
+                'oOhrt': {
+                    email: 'oOhrt3@wisc.edu',
+                    fullname: 'Oliver Ohrt'
+                },
+                // Add more mappings for other usernames if needed
+            };
+          }
+            return users[username];
+        }
+    </script>
 </body>
 </html>
 {% endblock content %}
