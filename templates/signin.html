@@ -80,9 +80,9 @@
   </head>
   <body>
     <!-- Logo positioned above the box -->
-    <div class="navbar-logo">
+    <a href="{{ url_for('home') }}" class="navbar-logo">
       <img class="logo-image" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" />
-    </div>
+    </a>
     
     <!-- Box content -->
     <div class="overlay-content"> <!-- Wrapped content within div -->
