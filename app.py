@@ -7,9 +7,9 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/chat')
-def chat():
-    return render_template('chat.html')
+@app.route('/hub')
+def hub():
+    return render_template('hub.html')
 
 @app.route('/account')
 def account():
