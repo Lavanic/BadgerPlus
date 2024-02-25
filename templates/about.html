@@ -1,12 +1,75 @@
 {% extends "base.html" %} {% block title %}Badger+ About{% endblock title %} {%
 block content %}
-<div class="container">
-  <div class="text-container">
-    <p class="smart-badger-text">Be a smart badger.</p>
+<head>
+  <meta>
+  <style>
+    .container {
+      font-family:  "Roboto", sans-serif;
+    }
+    .about-us {
+       width: 80%; 
+       margin: 150px auto; 
+       text-align: center; 
+   }
+   .team-member {
+            display: inline-block;
+            margin: 20px;
+    }
+    .team-member img {
+            width: 150px; 
+            height: auto; 
+            border-radius: 50%;
+    }
+    ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+    }
+    
+  </style>
+  <div class="container">
+    <div class= "about-us">
+      <h1>ABOUT US</h1>
+      <div class="team-member">
+        <img src="static/images/AidenLang.png" alt="Aiden Lang">
+        <p>Aiden Lang
+          <ul>
+            <li>Sophomore</li>
+            <li>Computer Science</li>
+          </ul>
+        </p>
+      </div>
+    
+      <div class="team-member">
+        <img src="static/images/OliverOhrt.png" alt="Oliver Ohrt">
+        <p>Oliver Ohrt
+          <ul>
+            <li>Freshman</li>
+            <li>Computer Science</li>
+          </ul>
+        </p>
+      </div>
+    
+      <div class="team-member">
+        <img src="static/images/WillFoster.png" alt="Will Foster">
+        <p>Will Foster
+          <ul>
+            <li>Sophomore</li>
+            <li>Computer Science/Data Science</li>
+          </ul>
+        </p>
+      </div>
+    
+      <div class="team-member">
+        <img src="static/images/SanjayMathur.png" alt="Sanjay Mathur">
+        <p>Sanjay Mathur
+          <ul>
+            <li>Sophomore</li>
+            <li>Computer Science/Economics</li>
+          </ul>
+        </p>
+      </div>
+    </div>
   </div>
-  <div class="get-started-button-container">
-    <a href="#" class="get-started-button">Create Account</a>
-  </div>
-  </div>
-</div>
+</head>
 {% endblock content %}
