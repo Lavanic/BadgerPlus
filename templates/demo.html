@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Input Output Demo</title>
+  </head>
+  <body>
+    <h1>Input Output Demo</h1>
+
+    <form id="inputForm">
+      <label for="canvasID">Canvas ID:</label>
+      <input type="text" id="canvasID" name="canvasID" required />
+
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+      const form = document.querySelector("#inputForm");
+      const output = document.querySelector("#output");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const canvasID = document.querySelector("#canvasID").value;
+        const fullName = document.querySelector("#fullName").value;
+
+        // Make a POST request to the backend
+        fetch("/process_input", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ canvasID, fullName }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Display the response from the backend
+            output.textContent = data.message;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+    </script>
+  </body>
+</html>
