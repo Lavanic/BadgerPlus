@@ -1,5 +1,11 @@
 {% extends "base.html" %} {% block title %}Badger+ Account{% endblock title %} {%
   block content %}
+  <html>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const variableValue = urlParams.get(username);
+      variableValue = sessionStorage.getItem(username);
+    </script>
   <style>
     .user-info {
       position: center;
@@ -31,5 +37,6 @@
         </div>
     </div>
   </div>
+  </html>
   {% endblock content %}
   
