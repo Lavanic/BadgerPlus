@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block title %}Badger+ Chat{% endblock title %} {%
+block content %}
+<div class="header">
+  <div class="chat-title">Chat with Badger+</div>
+  <div class="info-title">Your Daily Info</div>
+</div>
+<div class="container">
+  <div class="chat-container">
+    <div class="chat-messages">
+      <!-- Chat messages will be displayed here -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="messageInput" placeholder="Type your message..." />
+      <button id="sendButton">Send</button>
+    </div>
+  </div>
+  <div class="info-container">
+    <h2>Student Dashboard</h2>
+    <div class="info-section">
+      <h3>Upcoming Assignments</h3>
+      <ul>
+        <li>Math: Algebra II Homework - Due Tomorrow</li>
+        <li>Science: Chemistry Lab Report - Due Friday</li>
+        <li>History: Civil War Essay - Due Next Monday</li>
+      </ul>
+    </div>
+    <div class="info-section">
+      <h3>Clubs of Interest</h3>
+      <ul>
+        <li>Robotics Club - Meeting Thursday 5pm</li>
+        <li>Debate Team - New Member Orientation Wednesday</li>
+        <li>Chess Club - Tournament Sign-ups Open</li>
+      </ul>
+    </div>
+    <div class="info-section">
+      <h3>Recommended Restaurants</h3>
+      <ul>
+        <li>Pizza World - Best for Group Studies</li>
+        <li>The Green Bowl - Healthy and Quick</li>
+        <li>Book & Brew - Quiet Place to Read</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sendButton = document.getElementById("sendButton");
+    const messageInput = document.getElementById("messageInput");
+    const chatMessages = document.querySelector(".chat-messages");
+
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (message) {
+        // User message
+        const userMessageElement = document.createElement("div");
+        userMessageElement.textContent = message;
+        userMessageElement.classList.add("user-message"); // Add class for styling
+        chatMessages.appendChild(userMessageElement);
+
+        // Clear input field
+        messageInput.value = "";
+
+        // Chatbot response
+        const botMessageElement = document.createElement("div");
+        botMessageElement.textContent = "Hey there!";
+        botMessageElement.classList.add("bot-message"); // Add class for styling
+        chatMessages.appendChild(botMessageElement);
+
+        // Scroll to the bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    }
+
+    sendButton.addEventListener("click", function () {
+      sendMessage();
+    });
+
+    messageInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        sendMessage();
+        e.preventDefault(); // Prevent form submission or line break
+      }
+    });
+  });
+</script>
+{% endblock content %}
