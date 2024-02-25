@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template, session
 from gpt_service_utils import generate_response
-from canvas_data_fetcher import fetch_canvas_assignments_and_exams
+from canvas_fetcher import fetch_canvas_assignments_and_exams
 import os, secrets
 
 # Generate a secure secret key

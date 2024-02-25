@@ -159,3 +159,129 @@ body {
   color: #ea716d; /* Adjust color as needed */
   margin-right: -140px; /* Add spacing between login text and buttons */
 }
+.container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+}
+
+.chat-container {
+  width: 600px;
+  background-color: #5e5e5ebd;
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  margin-top: -350px;
+  margin-left: 50px !important;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background-color: #ea716dc8;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.chat-input button {
+  background-color: #353535;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #363636c7;
+}
+
+/* Updated CSS for Message Bubbles */
+.chat-messages div {
+  background-color: #fff; /* White background for the bubble */
+  color: #000; /* Black text color */
+  padding: 8px 12px; /* Padding inside the bubble */
+  border-radius: 20px; /* Rounded corners for the bubble */
+  display: inline-block; /* Make the div size match the text size */
+  margin-bottom: 8px; /* Space between messages */
+  word-wrap: break-word; /* Ensure long words do not overflow */
+  margin-right: 10px; /* Adds a little space to the right of each message */
+}
+
+/* Align messages to the left or right */
+/* You can align messages to the left or right to simulate a conversation */
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align messages to the left */
+  /* Use 'align-items: flex-end;' to align messages to the right */
+}
+
+/* Ensure .chat-messages has padding */
+.chat-messages {
+  padding: 10px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+/* User Message Bubble */
+.user-message {
+  background-color: #fff;
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+  margin-right: 10px;
+}
+
+/* Bot Message Bubble */
+.bot-message {
+  background-color: #007bff !important; /* Blue background for the bot message */
+  color: #fff !important; /* White text color */
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+  align-self: flex-end; /* Align to the right */
+}
+
+.header {
+  display: flex;
+  height: 150px; /* Adjust the height as needed */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px; /*Adjust to right */
+  color: #ea716d;
+  font-family: "Roboto", sans-serif; /* Adjust if you have a specific 'robot' font in mind */
+  text-decoration: underline; /* Add underline to the text */
+}
+
+.chat-title,
+.info-title {
+  font-size: 40px; /* Adjust size as needed */
+  padding: 0px 0px; /* Adds some padding above and below the text */
+}
+
+.info-container {
+  width: 600px; /* Match the chat container width */
+  height: 430px;
+  background-color: #fff; /* White background */
+  border-radius: 10px; /* Match the chat container border radius */
+  position: absolute; /* Use absolute positioning for precise control */
+  right: 50px; /* Distance from the right edge of the viewport */
+  top: -30px; /* Adjust the top position to match the chat container or as needed */
+  padding: 10px; /* Padding inside the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for depth */
+}
