@@ -259,7 +259,7 @@ body {
 
 .header {
   display: flex;
-  height: 170px; /* Adjust the height as needed */
+  height: 120px; /* Adjust the height as needed */
   justify-content: space-between;
   align-items: center;
   padding: 0 60px; /*Adjust to right */
