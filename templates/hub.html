@@ -42,40 +42,50 @@ block content %}
     </div>
   </div>
 </div>
-
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const sendButton = document.getElementById("sendButton");
     const messageInput = document.getElementById("messageInput");
     const chatMessages = document.querySelector(".chat-messages");
 
+    function appendMessage(text, className) {
+      const messageElement = document.createElement("div");
+      messageElement.textContent = text;
+      messageElement.classList.add(className); // Use provided class for styling
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+    }
+
     function sendMessage() {
       const message = messageInput.value.trim();
       if (message) {
-        // User message
-        const userMessageElement = document.createElement("div");
-        userMessageElement.textContent = message;
-        userMessageElement.classList.add("user-message"); // Add class for styling
-        chatMessages.appendChild(userMessageElement);
+        appendMessage(message, "user-message"); // Display user message
+        messageInput.value = ""; // Clear input field
 
-        // Clear input field
-        messageInput.value = "";
-
-        // Chatbot response
-        const botMessageElement = document.createElement("div");
-        botMessageElement.textContent = "Hey there!";
-        botMessageElement.classList.add("bot-message"); // Add class for styling
-        chatMessages.appendChild(botMessageElement);
-
-        // Scroll to the bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        // Send the user's message to the Flask backend
+        fetch("/get_chat_response", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_input: message,
+            username: sessionStorage.getItem("username"), // Send username with the request
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Display the chatbot's response
+            appendMessage(data.response, "bot-message");
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            appendMessage("Sorry, something went wrong.", "bot-message");
+          });
       }
     }
 
-    sendButton.addEventListener("click", function () {
-      sendMessage();
-    });
-
+    sendButton.addEventListener("click", sendMessage);
     messageInput.addEventListener("keypress", function (e) {
       if (e.key === "Enter") {
         sendMessage();
@@ -84,4 +94,5 @@ block content %}
     });
   });
 </script>
+
 {% endblock content %}
