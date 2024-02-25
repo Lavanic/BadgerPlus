@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block title %}Badger+ Chat{% endblock title %} {%
-block content %}
+{% extends "base.html" %}
+{% block title %}Badger+ Chat{% endblock title %}
+{% block content %}
 <div class="header">
   <!-- <div class="chat-title">Chat with Badger+</div>
   <div class="info-title">Your Daily Info</div> -->
@@ -16,34 +17,48 @@ block content %}
   </div>
   <div class="info-container">
     <h2>Student Dashboard</h2>
-    <div class="info-section">
-      <h3>Upcoming Assignments</h3>
-      <ul>
-        <li>Math: Algebra II Homework - Due Tomorrow</li>
-        <li>Science: Chemistry Lab Report - Due Friday</li>
-        <li>History: Civil War Essay - Due Next Monday</li>
-      </ul>
-    </div>
-    <div class="info-section">
-      <h3>Clubs of Interest</h3>
-      <ul>
-        <li>Robotics Club - Meeting Thursday 5pm</li>
-        <li>Debate Team - New Member Orientation Wednesday</li>
-        <li>Chess Club - Tournament Sign-ups Open</li>
-      </ul>
-    </div>
-    <div class="info-section">
-      <h3>Recommended Restaurants</h3>
-      <ul>
-        <li>Pizza World - Best for Group Studies</li>
-        <li>The Green Bowl - Healthy and Quick</li>
-        <li>Book & Brew - Quiet Place to Read</li>
-      </ul>
+    <div class="info-section" id="dynamicInfoSection">
+      <!-- Info will be dynamically updated here based on username -->
     </div>
   </div>
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
+    const username = sessionStorage.getItem('username'); // Get username from sessionStorage
+    console.log(username); // For debugging, check the username value
+    const dynamicInfoSection = document.getElementById("dynamicInfoSection");
+
+    function updateInfoSectionBasedOnUsername(username) {
+        let htmlContent = '';
+        if (username === 'aLang') {
+            htmlContent = `<h3>Upcoming Assignments</h3>
+            <ul>
+                <li>CS 252 Project 1 due Wednesday, March 1st</li>
+            </ul>
+            <h3>Upcoming Club Meetings</h3>
+            <ul>
+                <li>MadData meeting today!</li>
+            </ul>`;
+        } else if (username === 'wFoster') {
+            htmlContent = `<h3>Important Deadlines</h3>
+            <ul>
+                <li>AFRO AMER 154 Essay 1 - Due on Wednesday</li>
+            </ul>
+            <h3>Clubs & Societies</h3>
+            <ul>
+                <li>Photography Club - Annual Exhibit this Saturday</li>
+            </ul>`;
+        } else {
+            htmlContent = `<h3>Welcome!</h3>
+            <p>Please log in to view your dashboard.</p>`;
+        }
+        dynamicInfoSection.innerHTML = htmlContent;
+    }
+
+    updateInfoSectionBasedOnUsername(username);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
     const sendButton = document.getElementById("sendButton");
     const messageInput = document.getElementById("messageInput");
     const chatMessages = document.querySelector(".chat-messages");
@@ -62,18 +77,6 @@ block content %}
         appendMessage(message, "user-message"); // Display user message
         messageInput.value = ""; // Clear input field
 
-        // Append typing indicator
-        const typingIndicator = document.createElement("div");
-        typingIndicator.classList.add("typing-indicator");
-        for (let i = 0; i < 3; i++) {
-          // Create 3 dots
-          const dot = document.createElement("span");
-          typingIndicator.appendChild(dot);
-        }
-        chatMessages.appendChild(typingIndicator);
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
-
-        // Send the user's message to the Flask backend
         fetch("/get_chat_response", {
           method: "POST",
           headers: {
@@ -86,12 +89,10 @@ block content %}
         })
           .then((response) => response.json())
           .then((data) => {
-            chatMessages.removeChild(typingIndicator); // Remove typing indicator
-            appendMessage(data.response, "bot-message"); // Display the chatbot's response
+            appendMessage(data.response, "bot-message");
           })
           .catch((error) => {
             console.error("Error:", error);
-            chatMessages.removeChild(typingIndicator); // Ensure to remove typing indicator even on error
             appendMessage("Sorry, something went wrong.", "bot-message");
           });
       }
@@ -104,7 +105,6 @@ block content %}
         e.preventDefault(); // Prevent form submission or line break
       }
     });
-  });
+});
 </script>
-
 {% endblock content %}
