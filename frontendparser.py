@@ -27,15 +27,29 @@ def process_input():
     assignments_exams = fetch_canvas_assignments_and_exams(access_token)
     session['assignments_exams'] = assignments_exams  # Store in session for later use
 
-    summary_response = "Your data has been received. You can now ask questions."
+    api_gpt_key = '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'
+
+    summary_response = generate_response(api_gpt_key, "what exams do i have coming up", session.get('assignments_exams', []))
+    print(summary_response)
     return jsonify({"message": summary_response})
 
 @app.route('/ask_question', methods=['POST'])
 def ask_question():
-    question = request.json.get('question')
+    api_gpt_key = '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'
     assignments_exams = session.get('assignments_exams', [])
-    answer = generate_response(session.get('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'), question, assignments_exams)
+
+    question = request.json.get('question')
+    if question.lower() == 'exit':
+        print("Goodbye!")
+        return jsonify({"answer": "Goodbye!"})
+
+    answer = generate_response(api_gpt_key, question, assignments_exams)
+    print(answer)
     return jsonify({"answer": answer})
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
