@@ -1,6 +1,5 @@
-{% extends "base.html" %}
-{% block title %}Badger+ Chat{% endblock title %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Badger+ Chat{% endblock title %} {%
+block content %}
 <div class="header">
   <!-- <div class="chat-title">Chat with Badger+</div>
   <div class="info-title">Your Daily Info</div> -->
@@ -23,15 +22,15 @@
   </div>
 </div>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const username = sessionStorage.getItem('username'); // Get username from sessionStorage
+  document.addEventListener("DOMContentLoaded", function () {
+    const username = sessionStorage.getItem("username"); // Get username from sessionStorage
     console.log(username); // For debugging, check the username value
     const dynamicInfoSection = document.getElementById("dynamicInfoSection");
 
     function updateInfoSectionBasedOnUsername(username) {
-        let htmlContent = '';
-        if (username === 'aLang') {
-            htmlContent = `<h3>Upcoming Assignments</h3>
+      let htmlContent = "";
+      if (username === "aLang") {
+        htmlContent = `<h3>Upcoming Assignments</h3>
             <ul>
                 <li>CS 252 Project 1 due Wednesday, March 1st</li>
             </ul>
@@ -39,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <ul>
                 <li>MadData meeting today!</li>
             </ul>`;
-        } else if (username === 'wFoster') {
-            htmlContent = `<h3>Important Deadlines</h3>
+      } else if (username === "wFoster") {
+        htmlContent = `<h3>Important Deadlines</h3>
             <ul>
                 <li>AFRO AMER 154 Essay 1 - Due on Wednesday</li>
             </ul>
@@ -48,17 +47,17 @@ document.addEventListener("DOMContentLoaded", function () {
             <ul>
                 <li>Photography Club - Annual Exhibit this Saturday</li>
             </ul>`;
-        } else {
-            htmlContent = `<h3>Welcome!</h3>
+      } else {
+        htmlContent = `<h3>Welcome!</h3>
             <p>Please log in to view your dashboard.</p>`;
-        }
-        dynamicInfoSection.innerHTML = htmlContent;
+      }
+      dynamicInfoSection.innerHTML = htmlContent;
     }
 
     updateInfoSectionBasedOnUsername(username);
-});
+  });
 
-document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
     const sendButton = document.getElementById("sendButton");
     const messageInput = document.getElementById("messageInput");
     const chatMessages = document.querySelector(".chat-messages");
@@ -77,6 +76,18 @@ document.addEventListener("DOMContentLoaded", function () {
         appendMessage(message, "user-message"); // Display user message
         messageInput.value = ""; // Clear input field
 
+        // Append typing indicator
+        const typingIndicator = document.createElement("div");
+        typingIndicator.classList.add("typing-indicator");
+        for (let i = 0; i < 3; i++) {
+          // Create 3 dots
+          const dot = document.createElement("span");
+          typingIndicator.appendChild(dot);
+        }
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+
+        // Send the user's message to the Flask backend
         fetch("/get_chat_response", {
           method: "POST",
           headers: {
@@ -89,10 +100,12 @@ document.addEventListener("DOMContentLoaded", function () {
         })
           .then((response) => response.json())
           .then((data) => {
-            appendMessage(data.response, "bot-message");
+            chatMessages.removeChild(typingIndicator); // Remove typing indicator
+            appendMessage(data.response, "bot-message"); // Display the chatbot's response
           })
           .catch((error) => {
             console.error("Error:", error);
+            chatMessages.removeChild(typingIndicator); // Ensure to remove typing indicator even on error
             appendMessage("Sorry, something went wrong.", "bot-message");
           });
       }
@@ -105,6 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault(); // Prevent form submission or line break
       }
     });
-});
+  });
 </script>
 {% endblock content %}
