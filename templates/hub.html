@@ -42,8 +42,57 @@ block content %}
     </div>
   </div>
 </div>
-
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sendButton = document.getElementById("sendButton");
+    const messageInput = document.getElementById("messageInput");
+    const chatMessages = document.querySelector(".chat-messages");
+
+    function appendMessage(text, className) {
+      const messageElement = document.createElement("div");
+      messageElement.textContent = text;
+      messageElement.classList.add(className); // Use provided class for styling
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+    }
+
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (message) {
+        appendMessage(message, "user-message"); // Display user message
+        messageInput.value = ""; // Clear input field
+
+        // Send the user's message to the Flask backend
+        fetch("/get_chat_response", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_input: message }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Display the chatbot's response
+            appendMessage(data.response, "bot-message");
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            appendMessage("Sorry, something went wrong.", "bot-message");
+          });
+      }
+    }
+
+    sendButton.addEventListener("click", sendMessage);
+    messageInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        sendMessage();
+        e.preventDefault(); // Prevent form submission or line break
+      }
+    });
+  });
+</script>
+
+<!-- <script>
   document.addEventListener("DOMContentLoaded", function () {
     const sendButton = document.getElementById("sendButton");
     const messageInput = document.getElementById("messageInput");
@@ -83,5 +132,5 @@ block content %}
       }
     });
   });
-</script>
+</script> -->
 {% endblock content %}

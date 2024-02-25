@@ -7,7 +7,7 @@ def simple_keyword_extraction(question):
     keywords = [word for word in question.lower().split() if word not in stopwords]
     return keywords
 
-def generate_response_clubs(openai_api_key, user_question, csv_file_path='clubs.csv'):
+def generate_response_clubs(openai_api_key, user_question, csv_file_path='UW-Clubs.csv'):
     openai.api_key = openai_api_key
     keywords = simple_keyword_extraction(user_question)
     relevant_clubs = []
@@ -33,7 +33,7 @@ def generate_response_clubs(openai_api_key, user_question, csv_file_path='clubs.
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
             messages=messages,
             temperature=0.7,
             max_tokens=2000,
