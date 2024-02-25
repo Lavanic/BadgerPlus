@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block title %}Badger+ About{% endblock title %} {%
-block content %}
+{% extends "base.html" %}
+{% block title %}Badger+ About{% endblock title %}
+{% block content %}
 <head>
   <meta>
   <style>
@@ -10,27 +11,56 @@ block content %}
     .about-us {
        width: 80%; 
        margin: 150px auto; 
-       text-align: center; 
-   }
-   .team-member {
-            display: inline-block;
-            margin: 20px;
+       position: relative;
+       top: -50px;
+       display: flex; /* Use flexbox */
+       justify-content: center; /* Center horizontally */
+       flex-wrap: wrap; /* Allow wrapping */
+    }
+    .mission-wrapper {
+       text-align: center;
+    }
+    .mission-wrapper h1 {
+       font-size: 36px;
+       line-height: 1.2;
+       margin-bottom: 20px;
+       font-weight: bold;
+       color: #333;
+    }
+    .mission-wrapper p {
+       font-size: 18px;
+       line-height: 1.5;
+       margin-bottom: 40px;
+    }
+    .team-member {
+            flex: 0 0 150px; /* Each item takes 150px width */
+            margin: 20px; /* Adjust spacing */
+            text-align: center;
     }
     .team-member img {
-            width: 150px; 
+            width: 100%; /* Ensure image fills its container */
             height: auto; 
             border-radius: 50%;
+    }
+    .team-member p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-top: 10px;
     }
     ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
     }
-    
   </style>
   <div class="container">
-    <div class= "about-us">
-      <h1>ABOUT US</h1>
+    <div class="about-us">
+      <div class="mission-wrapper"> <!-- Centered wrapper -->
+        <h1>ABOUT US</h1>
+        <p>Our mission is to develop an application that serves as a 
+          dynamic hub for organizing students' academics while 
+          offering personalized recommendations tailored to individual preferences.</p>
+      </div>
       <div class="team-member">
         <img src="static/images/AidenLang.png" alt="Aiden Lang">
         <p>Aiden Lang
@@ -40,7 +70,6 @@ block content %}
           </ul>
         </p>
       </div> 
-
       <div class="team-member">
         <img src="static/images/OliverOhrt.png" alt="Oliver Ohrt">
         <p>Oliver Ohrt
@@ -50,7 +79,6 @@ block content %}
           </ul>
         </p>
       </div>
-    
       <div class="team-member">
         <img src="static/images/WillFoster.png" alt="Will Foster">
         <p>Will Foster
@@ -60,7 +88,6 @@ block content %}
           </ul>
         </p>
       </div>
-    
       <div class="team-member">
         <img src="static/images/SanjayMathur.png" alt="Sanjay Mathur">
         <p>Sanjay Mathur
