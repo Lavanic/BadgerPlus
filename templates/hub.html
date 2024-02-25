@@ -62,6 +62,17 @@ block content %}
         appendMessage(message, "user-message"); // Display user message
         messageInput.value = ""; // Clear input field
 
+        // Append typing indicator
+        const typingIndicator = document.createElement("div");
+        typingIndicator.classList.add("typing-indicator");
+        for (let i = 0; i < 3; i++) {
+          // Create 3 dots
+          const dot = document.createElement("span");
+          typingIndicator.appendChild(dot);
+        }
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+
         // Send the user's message to the Flask backend
         fetch("/get_chat_response", {
           method: "POST",
@@ -75,11 +86,12 @@ block content %}
         })
           .then((response) => response.json())
           .then((data) => {
-            // Display the chatbot's response
-            appendMessage(data.response, "bot-message");
+            chatMessages.removeChild(typingIndicator); // Remove typing indicator
+            appendMessage(data.response, "bot-message"); // Display the chatbot's response
           })
           .catch((error) => {
             console.error("Error:", error);
+            chatMessages.removeChild(typingIndicator); // Ensure to remove typing indicator even on error
             appendMessage("Sorry, something went wrong.", "bot-message");
           });
       }

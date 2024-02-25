@@ -193,7 +193,7 @@ body {
 }
 
 .chat-input button {
-  background-color: #353535;
+  background-color: #cb6663;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -325,4 +325,46 @@ body {
 /* Removes the border from the last section for cleaner look */
 .info-section:last-child {
   border-bottom: none;
+}
+.typing-indicator {
+  padding: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  background-color: #007bff !important; /* Blue background for the bubble */
+  justify-content: start;
+  align-self: flex-end; /* Align the typing indicator to the right */
+}
+.typing-indicator span {
+  height: 8px;
+  width: 8px;
+  margin-right: 4px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  animation: typing 1.4s infinite ease;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }

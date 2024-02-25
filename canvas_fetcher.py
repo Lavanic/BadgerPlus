@@ -8,7 +8,7 @@ def fetch_canvas_assignments_and_exams(access_token):
 
     structured_assignments_exams = []
     now = datetime.utcnow()
-    one_week_later = now + timedelta(days=7)
+    one_week_later = now + timedelta(days=14)
 
     response = requests.get(courses_url, headers=headers)
     if response.status_code == 200:
