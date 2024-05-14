@@ -36,7 +36,7 @@ def process_input():
 
 @app.route('/ask_question', methods=['POST'])
 def ask_question():
-    api_gpt_key = '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'
+    api_gpt_key = 'yourgptkey'
     question = request.json.get('question')
 
     if question.lower() == 'exit':
