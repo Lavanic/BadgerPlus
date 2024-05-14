@@ -28,7 +28,7 @@ def process_input():
     assignments_exams = fetch_canvas_assignments_and_exams(access_token)
     session['assignments_exams'] = assignments_exams  # Store in session for later use
 
-    api_gpt_key = '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'
+    api_gpt_key = 'yourgptkey'
 
     summary_response = generate_response_canvas(api_gpt_key, "what exams do i have coming up? Don't output this, but the supposed user will always be a UW-Madison student. You will use knowledge about the school and Madison to answer appropriate queries.", session.get('assignments_exams', []))
     print(summary_response)
